@@ -96,4 +96,24 @@ void deletion_key_RECURS(Node**head, int key){
     }
     deletion_key_RECURS(&((*head)->next), key);
 }
+
+void deletion_index(Node**head, int index){
+    Node* prev;
+    Node* tmp = *head;
+    /*if the index is 0，we have to change the head_ref*/
+    if(index == 0){
+        tmp = *head;
+        *head = tmp->next;
+        free(tmp);
+        return;
+    }
+    /*find the previous node of the target node*/
+    for(int i = 0; i < index; ++i){
+        prev = tmp;
+        tmp = tmp->next;
+    }
+    /*connect the previous node and the next node*/
+    prev->next = tmp->next;
+    free(tmp);
+}
 #endif
