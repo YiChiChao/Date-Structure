@@ -128,4 +128,81 @@ void append(Node* previous_node, int new_data){
 
 ```
 
+### $Deletion$ $of$ $the$ $Linkedlist$
+如果要刪除LinkedList中的某個節點，須將前一個節點中的指標換成下下一個節點的指標，並將此節點空間釋放。
+
+如果是要刪掉一個給定的值($key$)，就要確認$struct$中的數值是否與$key$相等
+
+#### Iterative Method
+```c=
+#include<stdio.h>
+#include<stdlib.h>
+
+void deletion_key(Node**head_ref, int key){
+    Node* tmp = *head_ref; 
+    Node* prev = NULL;
+    /*if the head equals to the key*/
+    if(tmp == *head_ref && tmp->data == key){
+        *head_ref = tmp->next;
+        free(tmp);
+        return;
+    }
+
+    /*Find the previous node of the node to be deleted*/
+    while(tmp != NULL && tmp->data != key){
+        /*Change the next of the previous node*/
+        prev = tmp;
+        tmp = tmp->next;
+    }
+    
+    /*Delete the key node*/
+    prev->next = tmp->next;
+    free(tmp);
+}
+
+```
+
+#### Recursive Method
+```c=
+#include<stdio.h>
+#include<stdlib.h>
+
+void deletion_key_RECURS(Node**head, int key){
+    Node* n = *head;
+    if(n->data == key){
+        Node* tmp = n;
+        *head = n->next;
+        free(tmp);
+        return;
+    }
+    deletion_key_RECURS(&((*head)->next), key);
+} 
+```
+
+如果是要刪掉某個$index$內的值，那就用for迴圈跑到那個節點。
+```c=
+#include<stdio.h>
+#include<stdlib.h>
+
+void deletion_index(Node**head, int index){
+    Node* prev;
+    Node* tmp = *head;
+    /*if the index is 0，we have to change the head_ref*/
+    if(index == 0){
+        tmp = *head;
+        *head = tmp->next;
+        free(tmp);
+        return;
+    }
+    /*find the previous node of the target node*/
+    for(int i = 0; i < index; ++i){
+        prev = tmp;
+        tmp = tmp->next;
+    }
+    /*connect the previous node and the next node*/
+    prev->next = tmp->next;
+    free(tmp);
+}
+```
+
 
