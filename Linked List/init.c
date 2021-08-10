@@ -18,6 +18,9 @@ int main(){
     third->data = 2;
     third->next = NULL;
     insertion_from_tail(&first, 3);
+    append(first, 7);
+    deletion_key(&first, 1);
+    deletion_key_RECURS(&first, 7);
     printlist(first);
 
 

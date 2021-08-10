@@ -47,5 +47,53 @@ void insertion_from_tail(Node** head_ref, int new_data){
 
 }
 
+void append(Node* previous_node, int new_data){
+    /*allocate the node*/
+    Node* node = (Node*) malloc(sizeof(Node));
 
+    /*add new data*/
+    node->data = new_data;
+
+    /*check if previous_node is NULL*/
+    if(previous_node == NULL)return;
+
+    /*connect new node and the next node*/
+    node->next = previous_node->next;
+
+    /*connect previous node and new node*/
+    previous_node->next = node;
+}
+
+void deletion_key(Node**head_ref, int key){
+    Node* tmp = *head_ref; 
+    Node* prev = NULL;
+    /*if the head equals to the key*/
+    if(tmp == *head_ref && tmp->data == key){
+        *head_ref = tmp->next;
+        free(tmp);
+        return;
+    }
+
+    /*Find the previous node of the node to be deleted*/
+    while(tmp != NULL && tmp->data != key){
+        /*Change the next of the previous node*/
+        prev = tmp;
+        tmp = tmp->next;
+    }
+    
+    /*Delete the key node*/
+    prev->next = tmp->next;
+    free(tmp);
+}
+
+void deletion_key_RECURS(Node**head, int key){
+    Node* n = *head;
+    if(n->data == key){
+        Node* tmp = n;
+        *head = n->next;
+        free(tmp);
+        return;
+    }
+    deletion_key_RECURS(&((*head)->next), key);
+}
 #endif
