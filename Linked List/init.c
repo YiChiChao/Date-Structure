@@ -17,7 +17,7 @@ int main(){
     second->next = third;
     third->data = 2;
     third->next = NULL;
-
+    insertion_from_tail(&first, 3);
     printlist(first);
 
 
