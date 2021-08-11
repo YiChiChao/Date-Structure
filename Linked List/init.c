@@ -1,6 +1,7 @@
 #include "func.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 int main(){
     Node* first = NULL;
@@ -21,6 +22,12 @@ int main(){
     append(first, 7);
     deletion_index(&first, 2);
     printlist(first);
+    int i = count_list_length(first, 0);
+    printf("The list length is %d\n", i);
+    if(find_element(first, 7)){
+        printf("The element exists in the list.\n");
+    }
+    else printf("Does not exist.\n");
 
 
     return 0;
