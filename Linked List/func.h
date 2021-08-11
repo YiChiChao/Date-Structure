@@ -2,6 +2,7 @@
 #define FUNC_H_INCLUDED
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct Node{
     int data;
@@ -115,5 +116,19 @@ void deletion_index(Node**head, int index){
     /*connect the previous node and the next node*/
     prev->next = tmp->next;
     free(tmp);
+}
+
+int count_list_length(Node* head, int num){
+    if(head == NULL)return num;
+    count_list_length(head->next, num+1);
+}
+
+bool find_element(Node* head, int target){
+    /*if the node is NULL means there is no same element in whole linkedlist*/
+    if(head == NULL)return false;
+    /*find if the target is same as the data*/
+    if(head->data == target)return true;
+    
+    find_element(head->next, target);
 }
 #endif
