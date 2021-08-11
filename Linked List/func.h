@@ -131,4 +131,57 @@ bool find_element(Node* head, int target){
     
     find_element(head->next, target);
 }
+
+Node* find_middle_element(Node* head){
+    Node* fast_ptr = head;
+    Node* slow_ptr = head;
+    if(head != NULL){
+        while(fast_ptr != NULL && fast_ptr->next != NULL){
+            fast_ptr = fast_ptr->next->next;
+            slow_ptr = slow_ptr->next;
+        }
+    }
+    return slow_ptr;
+}
+
+/*
+       HEAD
+        |             |             |              |             |       
+        |             |             |              |             |
+    +---+---+     +---+---+     +----+----+    +---+---+     +---+---+ 
+    | 1  | o----->| 2 | o-----> |  3 |  o-----> 4  | o----->| 5 |NULL|
+    +---+---+     +---+---+     +----+----+    +---+---+     +---+---+ 
+1.    *s  *f
+2.                   *s             *f
+3.                                  *s                          *f  
+*/
+/* The idea is to first search x and y in the given linked list.
+ If any of them is not present, then return. While searching for x and y,
+  keep track of current and previous pointers. First change next of previous pointers,
+   then change next of current pointers.
+ */
+
+void swap(Node*head, int x, int y){
+    Node* n = head;
+    Node* prev_x ;
+    Node* prev_y;
+    Node* cur_x;
+    Node* cur_y;
+    if(x == y)return;
+    while(n != NULL){
+        if(n->next->data == x){
+            prev_x = n;
+            cur_x = n->next;
+        }
+        if(n->next->data == y){
+            prev_y = n;
+            cur_y = n->next;
+        }
+        n = n->next;
+    }
+
+
+
+}
+ 
 #endif
