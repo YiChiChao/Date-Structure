@@ -20,7 +20,7 @@ int main(){
     third->next = NULL;
     insertion_from_tail(&first, 3);
     append(first, 7);
-    deletion_index(&first, 2);
+
     printlist(first);
     int i = count_list_length(first, 0);
     printf("The list length is %d\n", i);
@@ -28,6 +28,8 @@ int main(){
         printf("The element exists in the list.\n");
     }
     else printf("Does not exist.\n");
+    Node* middle = find_middle_element(first);
+    printf("middle element is %d\n", middle->data);
 
 
     return 0;
