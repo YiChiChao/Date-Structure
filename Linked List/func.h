@@ -24,7 +24,7 @@ void insertion_from_head(Node** head_ref, int new_data){
     /*connect the original head to the new node by the pointer*/
     head->next = *head_ref;
     /*change the record of the head_ref*/
-    head_ref = &head;
+    *head_ref = head;
 }
 
 void insertion_from_tail(Node** head_ref, int new_data){
