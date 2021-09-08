@@ -6,7 +6,7 @@
 
 #define MAX_NAME 256
 #define TABLE_SIZE 10
-#define DELETED_NODE (person*)(0xFFFFFFFFFFFUL) //typedef unsigned integer type
+#define DELETED_NODE (person*)(0xFFFFFFFFFFFUL)
 
 typedef struct{
     char name[MAX_NAME];
@@ -25,16 +25,15 @@ unsigned int hash(char *name){
     unsigned int hash_value = 0;
     for(int i = 0; i < length; ++i){
         hash_value += name[i];
-        hash_value =( hash_value * name[i]) % TABLE_SIZE;
+        hash_value =(hash_value * name[i]) % TABLE_SIZE;
     }
     return hash_value;
 }
 
 //make sure the table is empty
 void init_hash_table(){
-    for(int i = 0; i < TABLE_SIZE; ++i){
+    for(int i = 0; i < TABLE_SIZE; ++i)
         hash_table[i] = NULL;
-    }
 }
 
 void print_table(){
@@ -79,9 +78,6 @@ void hash_table_deletion(char *name){
     }       
 }
 
-
-
-
 person *hash_table_lookup(char *name){
     if(name == NULL) return NULL;
     int index = hash(name);
@@ -91,12 +87,12 @@ person *hash_table_lookup(char *name){
             return NULL;//the person is not here
         if(hash_table[try] == DELETED_NODE)
             continue;
-        if(strncmp(hash_table[try]->name, name,MAX_NAME) == 0){
+        if(strncmp(hash_table[try]->name, name,MAX_NAME) == 0)
             return hash_table[try];
-        }
     }
     return NULL;
 }
+
 int main(){
     init_hash_table();
     print_table();
@@ -119,25 +115,27 @@ int main(){
     hash_table_insert(&Harry);
     hash_table_insert(&Kitty);
     hash_table_insert(&Teresa);
-
     hash_table_insert(&Sanny);
     hash_table_insert(&Jenny);
     hash_table_insert(&Athina);
 
     print_table();
+
     hash_table_deletion("Kitty");
     hash_table_deletion("Sanny");
+
     person *tmp = hash_table_lookup("Stefano");
-    if(tmp == NULL){
+    if(tmp == NULL)
         printf("Stefano IS NOT FOUND!!\n");
-    }
-    else printf("Found : %s\n", tmp->name);
+    else
+        printf("Found : %s\n", tmp->name);
 
     person *temp = hash_table_lookup("Harry");
-    if(temp == NULL){
+    if(temp == NULL)
         printf("Harry IS NOT FOUND!!\n");
-    }
-    else printf("Found : %s\n", temp->name);
+    else
+        printf("Found : %s\n", temp->name);
+
     print_table();
     return 0;
 }
