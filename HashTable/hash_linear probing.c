@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdint.h>
+//quadratic probing
+//double hashing
 
 #define MAX_NAME 256
 #define TABLE_SIZE 10
