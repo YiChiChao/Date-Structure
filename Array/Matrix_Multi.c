@@ -75,10 +75,25 @@ matrix *fast_transpose(matrix *M){
 }
 matrix *matrix_mult(matrix *a, matrix *b){
     matrix *ans = malloc(sizeof(matrix));
-    int index = a->a[0].value;
-    for(int i = 1; i < index; ++i){
-
+    int a_row = a->a[1];
+    int a_col = 0;
+    int b_row = 0;
+    int b_col = 0;
+    for (int i = 1; i <= a->a[0].value;){
+        int sum = 0;
+        for(int j = 1; j <= b->a[0].value;){
+            if(a->a[i].row > b->a[j].row)++j;
+            if(a->a[i].row < b->a[j].row)++i;
+            if(a->a[i].row == b->a[j].row){
+                sum += a->a[i].value * b->a[j].value;
+            }
+        }           
     }
+    }
+
+
+
+
     return ans;
 }
 void storesum(term d[], int *totald, int row, int column, int *sum){
