@@ -118,9 +118,9 @@ void mmult(term a[], term b[], term d[]) //�x�}�ۭ�.
     }
     fastTranspose(b,new_b); //�NB�x�}��m�s�� new_b.
     
-    a[a[0].value+1].row = a[0].row; //�]�m�����I.
+    /*a[a[0].value+1].row = a[0].row; //�]�m�����I.
     new_b[b[0].value+1].row = b[0].col;
-    new_b[b[0].value+1].col = 0;
+    new_b[b[0].value+1].col = 0;*/
     
     for (i = 1; i <= a[0].value; ) {
         sum = 0;
@@ -139,10 +139,7 @@ void mmult(term a[], term b[], term d[]) //�x�}�ۭ�.
                 switch (COMPARE(a[i].col,new_b[j].col)) {
                     case 1: i++; break;  //�e < ��.
                     case -1: j++; break; //�e > ��.
-                    case 0: if((a[i].row+a[i].col+b[j].row)%2){ //�e�ᶵ�۵� �A�P�_ i+j+k ���_�� x (-1).
-                                sum += (a[i++].value * new_b[j++].value)*(-1);
-                            } else
-                                sum += (a[i++].value * new_b[j++].value);
+                    case 0: sum += (a[i++].value * new_b[j++].value); break;
                 }
             }
         }
