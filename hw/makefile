@@ -4,7 +4,7 @@ card: card.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 do:
-	./card < test
+	time ./card<test
 
 clean:
 	rm card

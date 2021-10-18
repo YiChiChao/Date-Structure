@@ -1,0 +1,28 @@
+void printplayers(Player *first_player, int take, int put){
+    printf("----------------------------\n");
+    printf("take = %d put = %d\n", take, put);
+    Player *player = first_player;
+    int player_index = 1;
+    while(player !=NULL){
+        Card *card = player->first_card;
+        printf("PLAYER %d: ", player_index++);
+        while(card != NULL ){
+            if(card->number == 0){//skip the first empty space
+                card = card->next;
+                continue;
+            }
+            if(card->number == -1){
+                printf("J ");
+            }
+            else{
+                printf("%d ", card->number);
+            }
+            card = card->next;
+        }
+        printf("\n");
+        printf("Joker = %d\n", player->joker);
+        if(player->next == first_player)break;//run the whole circular linkedlist
+        else player = player->next;
+    }
+    printf("----------------------------\n");
+}
