@@ -1,10 +1,11 @@
 CC = gcc
 CFLAGS = -g -Wall
-card: card.c
+
+bomb: bomb.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 do:
-	time ./card<test
+	./bomb<test;
 
 clean:
-	rm card
+	rm bomb
