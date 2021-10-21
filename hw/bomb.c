@@ -27,8 +27,8 @@ Person *pass_bomb(Person * nowperson, unsigned long long int steps){
     unsigned long long int run = steps % (unsigned long long int)n;
     //printf("%lld\n", run);
     Person *preexplode_person;
-    if(run == 0)run = steps;
-    if(steps == 0) run = n;
+    if(run == 0)run = steps;/*if the mod is 0, we have to run the whole steps to find the pre node*/
+    if(steps == 0) run = n;/*if the step is 0, we have to run the whole circle of people to the end of the round*/
     for(long long int i = 1; i < run; ++i){
         nowperson = nowperson->next;
         //printf("reun\n");
@@ -73,7 +73,7 @@ void print_solution(Person *first_person){
 int main(){
     long long int indice;
     long long int i;
-    unsigned long long int j;
+    unsigned long long int j;/*0 <= j <= 2^64 -1*/
     Person *first_person = NULL;
     Person *nowperson;
     Person *prebomb_person;
@@ -105,7 +105,7 @@ int main(){
             ++n;
             //print_solution(nowperson);
         }
-        if(n == 1)break;
+        if(n == 1)break;/*if there is only one node left*/ 
     }
     
     print_solution(nowperson);   
