@@ -22,13 +22,13 @@ void add_person(Person **nowperson, long long int indice){
 
 }
 
-Person *pass_bomb(Person * nowperson, long long int steps){
-
+Person *pass_bomb(Person * nowperson, unsigned long long int steps){
     if(n == 1)return nowperson;
-    long long int run = steps % n;
+    unsigned long long int run = steps % (unsigned long long int)n;
     //printf("%lld\n", run);
     Person *preexplode_person;
     if(run == 0)run = steps;
+    if(steps == 0) run = n;
     for(long long int i = 1; i < run; ++i){
         nowperson = nowperson->next;
         //printf("reun\n");
@@ -53,6 +53,8 @@ Person *explode(Person *preexplode_person){
 
 
 void print_solution(Person *first_person){
+    //printf("------------------------------------\n");
+    //printf("i = %d j = %d\n", i, j);
     if(first_person == NULL){
         printf("NULL\n");
         return;
@@ -64,12 +66,14 @@ void print_solution(Person *first_person){
         nowperson = nowperson->next;
     }
     printf("%lld\n", nowperson->indice);
+    //printf("------------------------------------\n");
     return;
 }
 
 int main(){
     long long int indice;
-    long long int i, j;
+    long long int i;
+    unsigned long long int j;
     Person *first_person = NULL;
     Person *nowperson;
     Person *prebomb_person;
@@ -88,7 +92,7 @@ int main(){
     }
     //print_solution(first_person);
     nowperson = first_person;
-    while(scanf("%lld %lld", &i,&j) != EOF){
+    while(scanf("%lld %llu", &i,&j) != EOF){
         if(i == -1 && j == -1)break;
         if(i == 1){
             prebomb_person = pass_bomb(nowperson, j);
