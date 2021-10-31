@@ -1,14 +1,14 @@
 CC = gcc
 CFLAGS = -g -Wall
-OBJECTS = shorty
+OBJECTS = infixTOpostfix
 
 all: $(OBJECTS)
 
-shorty: shorty.c
+infixTOpostfix: infix_to_postfix_stack.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 do:
-	./shorty<testcase;
+	./infixTOpostfix
 
 clean:
 	rm $(OBJECTS)
