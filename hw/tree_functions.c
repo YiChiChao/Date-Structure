@@ -173,30 +173,32 @@ ll KingdomUnitedPath(Node *root, long long int *max){
     if(root == NULL) return 0;
     leftpath = KingdomUnitedPath(root->left, max);
     rightpath = KingdomUnitedPath(root->right, max);
-    
-    /*if(root->left == NULL)leftpath = 0;
+
+    if(root->left == NULL)leftpath = 0;
     else {
-        leftpath = KingdomUnitedPath(root->left, max);
         if(root->weight == root->left->weight){
             //if the root weight is same as the root left node
             //the path should add one more path
             midpath += ++leftpath;
             //if the root weight is not same as the root left node
             //the path counting would stop and has to compare with the max counting path 
-        }else if(*max < leftpath)*max = leftpath;
+        }else{
+            leftpath = 0;
+        }
     }
     //same concept as the left node part
     if(root->right == NULL)rightpath = 0;
     else{
-        rightpath = KingdomUnitedPath(root->right, max);
         if(root->weight == root->right->weight){
             midpath += ++rightpath;
-        }else if(*max < rightpath)*max = rightpath;
+        }else{
+            rightpath = 0;
+        }
     }
     if(midpath > *max) *max = midpath;
     //the return for the scenarion when the left and right and root nod are all the same
     //choose the longer path since we only count the path not the whole subtree
-    return (leftpath > rightpath) ? leftpath : rightpath;*/
+    return (leftpath > rightpath) ? leftpath : rightpath;
 }
 
 //it is the path not the total connected node
