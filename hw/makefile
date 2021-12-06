@@ -1,6 +1,9 @@
 CC = gcc
+CXX = g++
+CXXFLAGS = -g -Wall -std=c++14
 CFLAGS = -g -Wall
-OBJECTS = bomb card shorty
+CHECKFLAGS = --leak-check=full -s
+OBJECTS = bomb card shorty tree bridge
 
 all: $(OBJECTS)
 
@@ -13,6 +16,12 @@ card: card.c
 shorty: shorty.c
 	$(CC) $(CFLAGS) $^ -o $@
 
+tree: tree_functions.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+bridge: bridge.cpp
+	$(CXX) $(CXXFLAGS) $^ -o $@
+
 
 do1:
 	./bomb<test
@@ -21,7 +30,13 @@ do2:
 	./card
 
 do3:
-	./shorty<testcase;
+	./shorty<testcase
+
+do4:
+	./tree<testcase4
+
+do5:
+	./bridge < testcase5
 
 
 clean:
